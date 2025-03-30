@@ -14,7 +14,7 @@ app.post('/comer', async (req, res) => {
         await novaComida.save();
         res.status(201).json(novaComida);
     } catch (error) {
-        res.status(500).json({ error: "Erro ao criar comida!" });
+        res.status(500).json({ error: "Erro ao criar comer!" });
     }
 });
 
@@ -33,7 +33,7 @@ app.put('/comer/:id', async (req, res) => {
         const comidaAtualizada = await Comida.findByIdAndUpdate(req.params.id, { name, img, price, ingredientes }, { new: true });
         res.json(comidaAtualizada);
     } catch (error) {
-        res.status(500).json({ error: "Erro ao atualizar comida!" });
+        res.status(500).json({ error: "Erro ao atualizar comer!" });
     }
 });
 
@@ -42,6 +42,6 @@ app.delete('/comer/:id', async (req, res) => {
         await Comida.findByIdAndDelete(req.params.id);
         res.json({ message: "Comida removida com sucesso!" });
     } catch (error) {
-        res.status(500).json({ error: "Erro ao deletar comida!" });
+        res.status(500).json({ error: "Erro ao deletar comer!" });
     }
 });
