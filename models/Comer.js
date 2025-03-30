@@ -14,7 +14,7 @@ const comerSchema = new Schema({
     required: true
   },
   ingredientes: {
-    type: Boolean,
+    type: String,
     required: true
   }
 });
