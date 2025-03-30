@@ -1,47 +1,17 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
+const beberController = require('../controllers/beberController');
 
-const  BeberController = require("../controllers/beberController");
+// Rota para criar bebida
+router.post('/', beberController.create);
 
-router.post("/", BeberController.create);
+// Rota para listar bebidas
+router.get('/', beberController.getAll);
+
+// Rota para atualizar bebida
+router.put('/:id', beberController.update);
+
+// Rota para deletar bebida
+router.delete('/:id', beberController.delete);
 
 module.exports = router;
-
-app.post('/beber', async (req, res) => {
-    try {
-        const { name, img, price, alcoolica } = req.body;
-        const novaBebida = new Bebida({ name, img, price, alcoolica });
-        await novaBebida.save();
-        res.status(201).json(novaBebida);
-    } catch (error) {
-        res.status(500).json({ error: "Erro ao criar bebida!" });
-    }
-});
-
-app.get('/beber', async (req, res) => {
-    try {
-        const beber = await Bebida.find();
-        res.json(beber);
-    } catch (error) {
-        res.status(500).json({ error: "Erro ao buscar beber!" });
-    }
-});
-
-app.put('/beber/:id', async (req, res) => {
-    try {
-        const { name, img, price, alcoolica } = req.body;
-        const bebidaAtualizada = await Bebida.findByIdAndUpdate(req.params.id, { name, img, price, alcoolica }, { new: true });
-        res.json(bebidaAtualizada);
-    } catch (error) {
-        res.status(500).json({ error: "Erro ao atualizar bebida!" });
-    }
-});
-
-app.delete('/beber/:id', async (req, res) => {
-    try {
-        await Bebida.findByIdAndDelete(req.params.id);
-        res.json({ message: "Bebida removida com sucesso!" });
-    } catch (error) {
-        res.status(500).json({ error: "Erro ao deletar bebida!" });
-    }
-});
