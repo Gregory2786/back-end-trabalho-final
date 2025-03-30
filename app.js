@@ -1,24 +1,24 @@
-const express = require("express")
-const app = express()
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const conectarDB = require('./db');
 
-require("dotenv").config();
-require("./db");
+const comidaRoutes = require('./routes/comidaRoutes');
+const bebidaRoutes = require('./routes/beberRoutes');
+const pedidoRoutes = require('./routes/pedidoRoutes');
 
-const port = process.env.PORT || 3000;
-const connectDB = require("./db");  
+const app = express();
+app.use(express.json());
+app.use(cors());
 
-const userRouter = require("./routes/user");
-const comerRouter = require("./routes/comer");  
-const beberRouter = require("./routes/beber");
+// Conectar ao MongoDB
+conectarDB();
 
-app.use("/user", userRouter);
-app.use("/comer", comerRouter);
-app.use("/beber", beberRouter);
+// Usar rotas
+app.use('/api/comidas', comidaRoutes);
+app.use('/api/bebidas', bebidaRoutes);
+app.use('/api/pedidos', pedidoRoutes);
 
-connectDB().then(() => {
-    app.listen(port, () => {
-      console.log(`🚀 Servidor rodando na porta ${port}`);
-    });
-  }).catch(err => {
-    console.error("❌ Falha ao iniciar o servidor:", err);
-  });
+// Configuração do servidor
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
