@@ -55,7 +55,7 @@ BACK...
 
 ### 🔹 Ferramentas:
 - **Git/GitHub** para controle de versão
-- **Postman** para testes da API
+- **MongoDB** para testes da API
 - **Dotenv** para configuração segura de variáveis de ambiente
 
 ## 🚀 Como Executar o Projeto
