@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const conectarDB = require('./db');
 
-const comidaRoutes = require('./routes/comidaRoutes');
-const bebidaRoutes = require('./routes/bebidaRoutes');
-const pedidoRoutes = require('./routes/pedidoRoutes');
+const comidaRoutes = require('./routes/comida');
+const bebidaRoutes = require('./routes/bebida');
+const pedidoRoutes = require('./routes/pedido');
 
 const app = express();
 app.use(express.json());
